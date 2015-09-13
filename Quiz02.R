@@ -5,6 +5,9 @@ fit <- lm(y ~ x)
 co <- summary(fit)$coefficients
 
 co[2,4] # 0.0529
+co[2, 1]/co[2,2] # t statistic
+2*pt(abs(co[2,1]/co[2,2]), df=fit$df, lower.tail = FALSE) # 0.0529
+
 
 # Q2
 
@@ -49,7 +52,7 @@ cc <- summary(Mod)$coefficients
 # Regression to intercept (no slope) is tantamount to regression to mean
 whyHat <- predict(Mod, newdata=data.frame(x=x))
 sum((y-whyHat)^2)/sum((y-mean(y))^2) # 0.25
-
+# Or 1 - R-squared (Ref. formula for apportioning errors)
 
 
 
